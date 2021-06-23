@@ -1,6 +1,7 @@
 package by.epam.shape.reader.impl;
 
 import by.epam.shape.exception.RectangleException;
+import by.epam.shape.reader.RectangleReader;
 import by.epam.shape.validator.RectangleLineValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class RectangleReaderImpl {
+public class RectangleReaderImpl implements RectangleReader {
 
     private static final Logger logger = LogManager.getLogger();
 
