@@ -9,6 +9,9 @@ public class Rectangle {
     private Point rightBottomPoint;
     private Point leftBottomPoint;
 
+    public Rectangle() {
+    }
+
     public Rectangle(long rectangleId, Point leftTopPoint, Point rightTopPoint, Point rightBottomPoint, Point leftBottomPoint) {
         this.rectangleId = RectangleIdGenerator.generateId();
         this.leftTopPoint = leftTopPoint;
