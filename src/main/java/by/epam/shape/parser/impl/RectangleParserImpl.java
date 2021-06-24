@@ -7,8 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,7 +16,8 @@ public class RectangleParserImpl implements RectangleParser {
     private static final Logger logger = LogManager.getLogger();
     private static final String DELIMITER = "\\s";
 
-    public List<Double> parse (List<String> correctLines) throws RectangleException {
+    @Override
+    public List<Double> parse(List<String> correctLines) throws RectangleException {
         List<Double> parameters = new ArrayList<>();
         if (correctLines.isEmpty()) {
             logger.log(Level.ERROR, "No lines for parsing");

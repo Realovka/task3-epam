@@ -7,8 +7,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,6 +19,7 @@ public class RectangleReaderImpl implements RectangleReader {
 
     private static final Logger logger = LogManager.getLogger();
 
+    @Override
     public List<String> readStringFromFile(String pathToFile) throws RectangleException {
         Path path = Paths.get(pathToFile);
         List<String> correctLines;
@@ -32,6 +31,7 @@ public class RectangleReaderImpl implements RectangleReader {
             logger.log(Level.ERROR, "File can't be open");
             throw new RectangleException();
         }
+        logger.log(Level.INFO, "Collection of strings from file " + correctLines);
         return correctLines;
     }
 }

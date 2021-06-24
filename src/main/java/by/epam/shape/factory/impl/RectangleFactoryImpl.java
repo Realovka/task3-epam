@@ -3,6 +3,7 @@ package by.epam.shape.factory.impl;
 import by.epam.shape.entity.Point;
 import by.epam.shape.entity.Rectangle;
 import by.epam.shape.exception.RectangleException;
+import by.epam.shape.factory.RectangleFactory;
 import by.epam.shape.validator.RectangleValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -10,12 +11,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class RectangleFactoryImpl {
+public class RectangleFactoryImpl implements RectangleFactory {
+
     private static final Logger logger = LogManager.getLogger();
     private static final int NUMBER_PARAMETERS = 8;
 
+    @Override
     public Rectangle createRectangle(List<Double> parameters) throws RectangleException {
-        Rectangle rectangle = new Rectangle();
+        Rectangle rectangle;
         if (parameters.size() < NUMBER_PARAMETERS) {
             logger.log(Level.ERROR, "Invalid argument count " + parameters);
             throw new RectangleException();
@@ -29,10 +32,11 @@ public class RectangleFactoryImpl {
             rectangle = new  Rectangle(leftTopPoint, rightTopPoint, rightBottomPoint, leftBottomPoint);
             logger.log(Level.INFO, "Create new rectangle " +  rectangle);
         } else {
-            logger.log(Level.ERROR, "Parameters are invalid. This rectangle doesn't exists " +  rectangle);
+            logger.log(Level.ERROR, "Parameters are invalid. This rectangle doesn't exists " +  parameters);
             throw new RectangleException();
         }
         return rectangle;
     }
 
 }
+
