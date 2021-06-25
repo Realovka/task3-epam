@@ -6,4 +6,7 @@ public interface RectangleService {
     boolean isRectangle(Rectangle rectangle);
     double findPerimeter(Rectangle rectangle);
     double findArea (Rectangle rectangle);
+    boolean isConvex(Rectangle rectangle);
+    boolean isRhombus(Rectangle rectangle);
+    boolean isSquare(Rectangle rectangle);
 }

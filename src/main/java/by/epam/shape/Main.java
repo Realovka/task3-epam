@@ -20,9 +20,12 @@ public class Main {
         List<Double> parameters = new RectangleParserImpl().parse(lines);
         Rectangle rectangle = new RectangleFactoryImpl().createRectangle(parameters);
 
-        new RectangleServiceImpl().isRectangle(rectangle);
-        new RectangleServiceImpl().findPerimeter(rectangle);
-        new RectangleServiceImpl().findArea(rectangle);
+//        new RectangleServiceImpl().isRectangle(rectangle);
+//        new RectangleServiceImpl().findPerimeter(rectangle);
+//        new RectangleServiceImpl().findArea(rectangle);
+//        new RectangleServiceImpl().isConvex(rectangle);
+        new RectangleServiceImpl().isRhombus(rectangle);
+        new RectangleServiceImpl().isSquare(rectangle);
 
     }
 }
