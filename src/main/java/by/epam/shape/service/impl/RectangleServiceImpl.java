@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
+
 
 public class RectangleServiceImpl implements RectangleService {
 
@@ -14,10 +16,7 @@ public class RectangleServiceImpl implements RectangleService {
 
     @Override
     public boolean isRectangle(Rectangle rectangle) {
-        if (!(rectangle.getLeftTopPoint().getX() - rectangle.getRightTopPoint().getX() /
-                rectangle.getRightBottomPoint().getX() - rectangle.getRightTopPoint().getX() ==
-                rectangle.getLeftTopPoint().getY() - rectangle.getRightTopPoint().getY() /
-                        rectangle.getRightBottomPoint().getY() - rectangle.getRightTopPoint().getY())) {
+        if (areAllRightAngles(rectangle)) {
             logger.log(Level.INFO, "It is rectangle " + rectangle);
             return true;
         } else {
@@ -27,17 +26,17 @@ public class RectangleServiceImpl implements RectangleService {
     }
 
     @Override
-    public double findPerimeter(Rectangle rectangle) {
-        double height = findHeight(rectangle);
-        double width = findWidth(rectangle);
-        double perimeter = (height + width) * 2;
+    public BigDecimal findPerimeter(Rectangle rectangle) {
+        BigDecimal height = findHeight(rectangle);
+        BigDecimal width = findWidth(rectangle);
+        BigDecimal perimeter = (height.add(width)).multiply(BigDecimal.valueOf(2));
         logger.log(Level.INFO, "Perimeter of rectangle is " + perimeter);
         return perimeter;
     }
 
     @Override
-    public double findArea(Rectangle rectangle) {
-        double area = findHeight(rectangle) * findWidth(rectangle);
+    public BigDecimal findArea(Rectangle rectangle) {
+        BigDecimal area = findHeight(rectangle).multiply(findWidth(rectangle));
         logger.log(Level.INFO, "Area of rectangle is " + area);
         return area;
     }
@@ -45,7 +44,7 @@ public class RectangleServiceImpl implements RectangleService {
     //if all angles are 90 degrees
     @Override
     public boolean isConvex(Rectangle rectangle) {
-        if(areAllRightAngles(rectangle)) {
+        if (areAllRightAngles(rectangle)) {
             logger.log(Level.INFO, "Rectangle is convex");
             return true;
         } else {
@@ -56,7 +55,7 @@ public class RectangleServiceImpl implements RectangleService {
 
     @Override
     public boolean isRhombus(Rectangle rectangle) {
-        if(findHeight(rectangle )== findWidth(rectangle)) {
+        if (findHeight(rectangle).equals(findWidth(rectangle))) {
             logger.log(Level.INFO, "This shape is rhombus " + rectangle);
             return true;
         } else {
@@ -67,7 +66,7 @@ public class RectangleServiceImpl implements RectangleService {
 
     @Override
     public boolean isSquare(Rectangle rectangle) {
-        if(findHeight(rectangle )== findWidth(rectangle) && areAllRightAngles(rectangle)) {
+        if (findHeight(rectangle).equals(findWidth(rectangle)) && areAllRightAngles(rectangle)) {
             logger.log(Level.INFO, "This shape is square " + rectangle);
             return true;
         } else {
@@ -76,24 +75,45 @@ public class RectangleServiceImpl implements RectangleService {
         }
     }
 
-    private double findHeight(Rectangle rectangle) {
-        double height = rectangle.getLeftTopPoint().getY() - rectangle.getRightBottomPoint().getY();
-        logger.log(Level.INFO, "Height of rectangle is " + height);
-        return height;
+    @Override
+    public boolean isTrapeze(Rectangle rectangle) {
+        if ((rectangle.getLeftTopPoint().getX() != rectangle.getLeftBottomPoint().getX() ||
+                rectangle.getRightTopPoint().getX() != rectangle.getRightBottomPoint().getX() &&
+                        rectangle.getLeftTopPoint().getY() == rectangle.getRightTopPoint().getY() &&
+                        rectangle.getLeftBottomPoint().getY() == rectangle.getRightBottomPoint().getY()) ||
+                (rectangle.getLeftTopPoint().getY() != rectangle.getRightTopPoint().getY() ||
+                        rectangle.getLeftBottomPoint().getY() != rectangle.getRightBottomPoint().getY() &&
+                                rectangle.getLeftTopPoint().getY() == rectangle.getLeftBottomPoint().getY() &&
+                                rectangle.getRightTopPoint().getY() == rectangle.getRightBottomPoint().getY())) {
+            logger.log(Level.INFO, "This shape is trapeze " + rectangle);
+            return true;
+        }
+        logger.log(Level.INFO, "This shape isn't trapeze " + rectangle);
+        return false;
     }
 
-    private double findWidth(Rectangle rectangle) {
-        double width = rectangle.getRightBottomPoint().getX() - rectangle.getLeftTopPoint().getX();
+    private BigDecimal findHeight(Rectangle rectangle) {
+        double firstCoordinateVectorHeight = rectangle.getLeftTopPoint().getX() - rectangle.getLeftBottomPoint().getX();
+        double secondCoordinateVectorHeight = rectangle.getLeftTopPoint().getY() - rectangle.getLeftBottomPoint().getY();
+        double height = Math.sqrt(Math.pow(firstCoordinateVectorHeight, 2) + Math.pow(secondCoordinateVectorHeight, 2));
+        logger.log(Level.INFO, "Height of rectangle is " + height);
+        return BigDecimal.valueOf(height);
+    }
+
+    private BigDecimal findWidth(Rectangle rectangle) {
+        double firstCoordinateVectorWidth = rectangle.getRightBottomPoint().getX() - rectangle.getLeftBottomPoint().getX();
+        double secondCoordinateVectorWidth = rectangle.getRightBottomPoint().getY() - rectangle.getLeftBottomPoint().getY();
+        double width = Math.sqrt(Math.pow(firstCoordinateVectorWidth, 2) + Math.pow(secondCoordinateVectorWidth, 2));
         logger.log(Level.INFO, "Width of rectangle is " + width);
-        return width;
+        return BigDecimal.valueOf(width);
     }
 
     private double findTheFirstCoordinateVector(Point first, Point second) {
-        return first.getX() + second.getX();
+        return second.getX() - first.getX();
     }
 
     private double findTheSecondCoordinateVector(Point first, Point second) {
-        return first.getY() + second.getY();
+        return second.getY() - first.getY();
     }
 
     private boolean isRightAngleBetweenVectors(Point first, Point second, Point third) {
@@ -111,7 +131,7 @@ public class RectangleServiceImpl implements RectangleService {
     }
 
     private boolean areAllRightAngles(Rectangle rectangle) {
-        if(isRightAngleBetweenVectors(rectangle.getLeftTopPoint(), rectangle.getRightTopPoint(), rectangle.getLeftBottomPoint()) &&
+        if (isRightAngleBetweenVectors(rectangle.getLeftTopPoint(), rectangle.getRightTopPoint(), rectangle.getLeftBottomPoint()) &&
                 isRightAngleBetweenVectors(rectangle.getRightTopPoint(), rectangle.getRightBottomPoint(), rectangle.getLeftTopPoint()) &&
                 isRightAngleBetweenVectors(rectangle.getLeftBottomPoint(), rectangle.getLeftTopPoint(), rectangle.getRightBottomPoint()) &&
                 isRightAngleBetweenVectors(rectangle.getRightBottomPoint(), rectangle.getRightTopPoint(), rectangle.getLeftBottomPoint())) {

@@ -22,10 +22,10 @@ public class Main {
 
 //        new RectangleServiceImpl().isRectangle(rectangle);
 //        new RectangleServiceImpl().findPerimeter(rectangle);
-//        new RectangleServiceImpl().findArea(rectangle);
+        new RectangleServiceImpl().findArea(rectangle);
 //        new RectangleServiceImpl().isConvex(rectangle);
-        new RectangleServiceImpl().isRhombus(rectangle);
-        new RectangleServiceImpl().isSquare(rectangle);
+//        new RectangleServiceImpl().isRhombus(rectangle);
+//        new RectangleServiceImpl().isSquare(rectangle);
 
     }
 }
