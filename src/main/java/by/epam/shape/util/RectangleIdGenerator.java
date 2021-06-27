@@ -8,6 +8,6 @@ public class RectangleIdGenerator {
     }
 
     public static long generateId() {
-       return   counter++;
+       return ++counter;
     }
 }

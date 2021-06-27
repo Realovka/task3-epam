@@ -21,7 +21,7 @@ public class RectangleParserImpl implements RectangleParser {
         List<Double> parameters = new ArrayList<>();
         if (correctLines.isEmpty()) {
             logger.log(Level.ERROR, "No lines for parsing");
-            throw new RectangleException();
+            throw new RectangleException("No lines for parsing");
         }
         for(String item : correctLines) {
             parameters.addAll(generateElements(item)

@@ -21,7 +21,7 @@ public class RectangleFactoryImpl implements RectangleFactory {
         Rectangle rectangle;
         if (parameters.size() < NUMBER_PARAMETERS) {
             logger.log(Level.ERROR, "Invalid argument count " + parameters);
-            throw new RectangleException();
+            throw new RectangleException("Invalid argument count " + parameters);
         }
         Point leftTopPoint = new Point(parameters.get(0), parameters.get(1));
         Point rightTopPoint = new Point(parameters.get(2), parameters.get(3));
@@ -33,7 +33,7 @@ public class RectangleFactoryImpl implements RectangleFactory {
             logger.log(Level.INFO, "Create new rectangle " +  rectangle);
         } else {
             logger.log(Level.ERROR, "Parameters are invalid. This rectangle doesn't exists " +  parameters);
-            throw new RectangleException();
+            throw new RectangleException("Parameters are invalid. This rectangle doesn't exists " +  parameters);
         }
         return rectangle;
     }

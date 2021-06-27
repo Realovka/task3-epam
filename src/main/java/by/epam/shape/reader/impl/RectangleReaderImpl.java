@@ -29,7 +29,7 @@ public class RectangleReaderImpl implements RectangleReader {
                     .collect(Collectors.toList());
         } catch (IOException e) {
             logger.log(Level.ERROR, "File can't be open");
-            throw new RectangleException();
+            throw new RectangleException("File can't be open");
         }
         logger.log(Level.INFO, "Collection of strings from file " + correctLines);
         return correctLines;

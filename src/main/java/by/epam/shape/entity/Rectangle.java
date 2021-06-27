@@ -1,13 +1,21 @@
 package by.epam.shape.entity;
 
+import by.epam.shape.exception.RectangleException;
+import by.epam.shape.observer.RectangleEvent;
+import by.epam.shape.observer.RectangleObservable;
+import by.epam.shape.observer.RectangleObserver;
 import by.epam.shape.util.RectangleIdGenerator;
 
-public class Rectangle {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Rectangle implements RectangleObservable {
     private long rectangleId;
     private Point leftTopPoint;
     private Point rightTopPoint;
     private Point rightBottomPoint;
     private Point leftBottomPoint;
+    private List<RectangleObserver> observers = new ArrayList<>();
 
     public Rectangle() {
     }
@@ -39,32 +47,36 @@ public class Rectangle {
         return leftTopPoint;
     }
 
-    public void setLeftTopPoint(Point leftTopPoint) {
+    public void setLeftTopPoint(Point leftTopPoint) throws RectangleException{
         this.leftTopPoint = leftTopPoint;
+        notifyObservers();
     }
 
     public Point getRightTopPoint() {
         return rightTopPoint;
     }
 
-    public void setRightTopPoint(Point rightTopPoint) {
+    public void setRightTopPoint(Point rightTopPoint) throws RectangleException{
         this.rightTopPoint = rightTopPoint;
+        notifyObservers();
     }
 
     public Point getRightBottomPoint() {
         return rightBottomPoint;
     }
 
-    public void setRightBottomPoint(Point rightBottomPoint) {
+    public void setRightBottomPoint(Point rightBottomPoint) throws RectangleException{
         this.rightBottomPoint = rightBottomPoint;
+        notifyObservers();
     }
 
     public Point getLeftBottomPoint() {
         return leftBottomPoint;
     }
 
-    public void setLeftBottomPoint(Point leftBottomPoint) {
+    public void setLeftBottomPoint(Point leftBottomPoint) throws RectangleException{
         this.leftBottomPoint = leftBottomPoint;
+        notifyObservers();
     }
 
     @Override
@@ -94,5 +106,25 @@ public class Rectangle {
         builder.append(" rightBottomPoint = [").append(rightBottomPoint.getX()).append("; ").append(rightBottomPoint.getY()).append("]");
         builder.append(" leftBottomPoint = [").append(leftBottomPoint.getX()).append("; ").append(leftBottomPoint.getY()).append("]}");
         return builder.toString();
+    }
+
+    @Override
+    public void attach(RectangleObserver observer) {
+        if (observer != null) {
+            observers.add(observer);
+        }
+    }
+
+    @Override
+    public void detach(RectangleObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() throws RectangleException {
+        RectangleEvent event = new RectangleEvent(this);
+        for (RectangleObserver observer : observers) {
+            observer.changeParameters(event);
+        }
     }
 }

@@ -98,6 +98,5 @@ public class RectangleServiceImplTest {
     public void testIsTrapezeWhenItIsRhombus() {
         boolean result = service.isTrapeze(rhombus);
         assertTrue(result);
-
     }
 }
