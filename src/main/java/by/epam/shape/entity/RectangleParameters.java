@@ -44,9 +44,9 @@ public class RectangleParameters {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("RectangleParameters{")
-                .append("perimeter=").append(perimeter)
-                .append(", area=").append(area)
+        builder.append("RectangleParameters {")
+                .append("perimeter = ").append(perimeter)
+                .append(", area = ").append(area)
                 .append('}');
         return builder.toString();
     }

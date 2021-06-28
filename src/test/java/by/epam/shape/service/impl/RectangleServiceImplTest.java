@@ -76,6 +76,7 @@ public class RectangleServiceImplTest {
        assertTrue(result);
     }
 
+
     @Test
     public void testIsSquareTrue() {
         boolean result = service.isSquare(square);

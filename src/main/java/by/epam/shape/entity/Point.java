@@ -32,7 +32,8 @@ public class Point {
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
         return Double.compare(point.x, x) == 0 &&
-                Double.compare(point.y, y) == 0;
+                Double.compare(point.y, y) == 0 &&
+                point.x == x && point.y == y;
     }
 
     @Override

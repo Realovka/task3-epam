@@ -34,7 +34,8 @@ public class Warehouse {
     }
 
     public void putNewParameters(Long id, RectangleParameters parameters) {
-        logger.log(Level.INFO, "Put new parameters " + parameters);
+        logger.log(Level.INFO, "Put new id " + id +" and parameters " + parameters + " in warehouse");
         map.put(id, parameters);
     }
+
 }

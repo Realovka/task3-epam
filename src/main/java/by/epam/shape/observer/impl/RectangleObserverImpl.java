@@ -21,10 +21,11 @@ public class RectangleObserverImpl implements RectangleObserver {
     @Override
     public void changeParameters(RectangleEvent event) throws RectangleException {
         Rectangle rectangle = event.getSource();
-        long id = rectangle.getRectangleId();
         Warehouse warehouse = Warehouse.getInstance();
-        RectangleParameters parameters = warehouse.getRectangleParameters(id);
         RectangleService service = new RectangleServiceImpl();
+
+        long id = rectangle.getRectangleId();
+        RectangleParameters parameters = warehouse.getRectangleParameters(id);
         BigDecimal perimeter = service.findPerimeter(rectangle);
         parameters.setPerimeter(perimeter);
         BigDecimal area = service.findArea(rectangle);
@@ -32,5 +33,4 @@ public class RectangleObserverImpl implements RectangleObserver {
         warehouse.putNewParameters(id, parameters);
         logger.log(Level.INFO,"Update perimeter and area in rectangle " + rectangle);
     }
-
 }

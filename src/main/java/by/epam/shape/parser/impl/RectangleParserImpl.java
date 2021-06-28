@@ -23,7 +23,7 @@ public class RectangleParserImpl implements RectangleParser {
             logger.log(Level.ERROR, "No lines for parsing");
             throw new RectangleException("No lines for parsing");
         }
-        for(String item : correctLines) {
+        for (String item : correctLines) {
             parameters.addAll(generateElements(item)
                     .stream().map(Double::parseDouble)
                     .collect(Collectors.toList()));

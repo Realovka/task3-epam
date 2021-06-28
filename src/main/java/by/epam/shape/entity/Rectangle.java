@@ -5,6 +5,9 @@ import by.epam.shape.observer.RectangleEvent;
 import by.epam.shape.observer.RectangleObservable;
 import by.epam.shape.observer.RectangleObserver;
 import by.epam.shape.util.RectangleIdGenerator;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +19,13 @@ public class Rectangle implements RectangleObservable {
     private Point rightBottomPoint;
     private Point leftBottomPoint;
     private List<RectangleObserver> observers = new ArrayList<>();
+    private static final Logger logger = LogManager.getLogger();
 
     public Rectangle() {
     }
 
-    public Rectangle(long rectangleId, Point leftTopPoint, Point rightTopPoint, Point rightBottomPoint, Point leftBottomPoint) {
-        this.rectangleId = RectangleIdGenerator.generateId();
-        this.leftTopPoint = leftTopPoint;
-        this.rightTopPoint = rightTopPoint;
-        this.rightBottomPoint = rightBottomPoint;
-        this.leftBottomPoint = leftBottomPoint;
-    }
-
     public Rectangle(Point leftTopPoint, Point rightTopPoint, Point rightBottomPoint, Point leftBottomPoint) {
+        this.rectangleId = RectangleIdGenerator.generateId();
         this.leftTopPoint = leftTopPoint;
         this.rightTopPoint = rightTopPoint;
         this.rightBottomPoint = rightBottomPoint;
@@ -49,6 +46,7 @@ public class Rectangle implements RectangleObservable {
 
     public void setLeftTopPoint(Point leftTopPoint) throws RectangleException{
         this.leftTopPoint = leftTopPoint;
+        logger.log(Level.INFO, "Set new leftTopPoint to rectangle " + leftTopPoint);
         notifyObservers();
     }
 
@@ -58,6 +56,7 @@ public class Rectangle implements RectangleObservable {
 
     public void setRightTopPoint(Point rightTopPoint) throws RectangleException{
         this.rightTopPoint = rightTopPoint;
+        logger.log(Level.INFO, "Set new rightTopPoint to rectangle " + rightTopPoint);
         notifyObservers();
     }
 
@@ -67,6 +66,7 @@ public class Rectangle implements RectangleObservable {
 
     public void setRightBottomPoint(Point rightBottomPoint) throws RectangleException{
         this.rightBottomPoint = rightBottomPoint;
+        logger.log(Level.INFO, "Set new rightBottomPoint to rectangle " + rightBottomPoint);
         notifyObservers();
     }
 
@@ -76,6 +76,7 @@ public class Rectangle implements RectangleObservable {
 
     public void setLeftBottomPoint(Point leftBottomPoint) throws RectangleException{
         this.leftBottomPoint = leftBottomPoint;
+        logger.log(Level.INFO, "Set new leftBottomPoint to rectangle " + leftBottomPoint);
         notifyObservers();
     }
 
@@ -110,9 +111,7 @@ public class Rectangle implements RectangleObservable {
 
     @Override
     public void attach(RectangleObserver observer) {
-        if (observer != null) {
             observers.add(observer);
-        }
     }
 
     @Override
