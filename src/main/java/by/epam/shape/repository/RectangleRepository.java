@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,5 +58,12 @@ public class RectangleRepository {
 
     public List<Rectangle> query(RectangleSpecification specification) {
         return rectangles.stream().filter(specification::specify).collect(Collectors.toList());
+    }
+
+    public List<Rectangle> sort(Comparator<Rectangle> comparator) {
+        List<Rectangle> results = new ArrayList<>();
+        Collections.copy(results, rectangles);
+        results.sort(comparator);
+        return results;
     }
 }

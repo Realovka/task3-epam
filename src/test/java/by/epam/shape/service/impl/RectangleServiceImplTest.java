@@ -43,14 +43,16 @@ public class RectangleServiceImplTest {
     @Test
     public void testFindPerimeter() {
         BigDecimal actual = service.findPerimeter(rectangle);
-        assertEquals(actual, BigDecimal.valueOf(12.0));
+        int result = actual.compareTo(BigDecimal.valueOf(12));
+        assertEquals(result, 0);
     }
 
-//    @Test
-//    public void testFindArea() {
-//        BigDecimal actual = service.findArea(square);
-//        assertEquals(actual, BigDecimal.valueOf(1.00));
-//    }
+    @Test
+    public void testFindArea() {
+        BigDecimal actual = service.findArea(square);
+        int result = actual.compareTo(BigDecimal.valueOf(1));
+        assertEquals(result, 0);
+    }
 
     @Test
     public void testIsConvexTrue() {

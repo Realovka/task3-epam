@@ -92,7 +92,8 @@ public class RectangleServiceImpl implements RectangleService {
         return false;
     }
 
-    private BigDecimal findHeight(Rectangle rectangle) {
+    @Override
+    public BigDecimal findHeight(Rectangle rectangle) {
         double firstCoordinateVectorHeight = rectangle.getLeftTopPoint().getX() - rectangle.getLeftBottomPoint().getX();
         double secondCoordinateVectorHeight = rectangle.getLeftTopPoint().getY() - rectangle.getLeftBottomPoint().getY();
         double height = Math.sqrt(Math.pow(firstCoordinateVectorHeight, 2) + Math.pow(secondCoordinateVectorHeight, 2));
@@ -100,7 +101,8 @@ public class RectangleServiceImpl implements RectangleService {
         return BigDecimal.valueOf(height);
     }
 
-    private BigDecimal findWidth(Rectangle rectangle) {
+    @Override
+    public BigDecimal findWidth(Rectangle rectangle) {
         double firstCoordinateVectorWidth = rectangle.getRightBottomPoint().getX() - rectangle.getLeftBottomPoint().getX();
         double secondCoordinateVectorWidth = rectangle.getRightBottomPoint().getY() - rectangle.getLeftBottomPoint().getY();
         double width = Math.sqrt(Math.pow(firstCoordinateVectorWidth, 2) + Math.pow(secondCoordinateVectorWidth, 2));

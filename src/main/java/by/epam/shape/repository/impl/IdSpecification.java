@@ -12,6 +12,6 @@ public class IdSpecification implements RectangleSpecification {
 
     @Override
     public boolean specify(Rectangle rectangle) {
-        return rectangle.getRectangleId() >= id;
+        return rectangle.getRectangleId() > id;
     }
 }

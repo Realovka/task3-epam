@@ -13,6 +13,8 @@ import by.epam.shape.observer.impl.RectangleObserverImpl;
 import by.epam.shape.parser.impl.RectangleParserImpl;
 import by.epam.shape.reader.impl.RectangleReaderImpl;
 import by.epam.shape.repository.RectangleRepository;
+import by.epam.shape.repository.RectangleSpecification;
+import by.epam.shape.repository.impl.IdSpecification;
 import by.epam.shape.service.impl.RectangleServiceImpl;
 
 import java.io.File;
@@ -44,15 +46,9 @@ public class Main {
             parameters.remove(0);
             repository.addRectangle(rectangle);
         }
-        RectangleParameters par = Warehouse.getInstance().getRectangleParameters(1);
-        System.out.println(par);
-        Rectangle rectangle = repository.findRectangleById(1L);
-        rectangle.setLeftTopPoint(new Point(-3, 2));
-        rectangle.setRightBottomPoint(new Point(3, 2));
-        rectangle.setRightBottomPoint(new Point(3, -2));
-        rectangle.setLeftBottomPoint(new Point(-3, -2));
-        RectangleParameters p = Warehouse.getInstance().getRectangleParameters(1);
-        System.out.println(p);
+        RectangleSpecification specification = new IdSpecification(1L);
+        List<Rectangle> rectangles = repository.query(specification);
+        rectangles.forEach(System.out::println);
 
 
     }
