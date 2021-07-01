@@ -6,6 +6,7 @@ import by.epam.shape.exception.RectangleException;
 import by.epam.shape.factory.RectangleFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class RectangleFactoryImplTest {
     Point leftBottomPoint;
     RectangleFactory factory;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         values = List.of(-2.0, -1.0, -1.0, -1.0, -1.0, -2.0, -2.0, -2.0);
         invalidValues = List.of(-2.0, -1.0, -1.0);

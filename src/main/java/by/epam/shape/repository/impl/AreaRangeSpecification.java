@@ -23,6 +23,11 @@ public class AreaRangeSpecification implements RectangleSpecification {
         BigDecimal area = service.findArea(rectangle);
         BigDecimal answerMax = area.max(maxArea);
         BigDecimal answerMin = area.min(minArea);
-        return answerMax.equals(maxArea) && answerMin.equals(minArea);
+        int resultMax = answerMax.compareTo(maxArea);
+        int resultMin = answerMin.compareTo(minArea);
+        if(resultMax <=0 && resultMin >=0) {
+            return true;
+        }
+        return false;
     }
 }

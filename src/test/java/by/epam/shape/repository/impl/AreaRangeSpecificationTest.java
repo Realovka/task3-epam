@@ -14,7 +14,6 @@ public class AreaRangeSpecificationTest {
 
     Rectangle rectangle;
     RectangleSpecification specification;
-    RectangleSpecification specificationFalse;
     Point leftTopPoint;
     Point rightTopPoint;
     Point rightBottomPoint;
@@ -28,7 +27,7 @@ public class AreaRangeSpecificationTest {
         rightBottomPoint = new Point(5, 2);
         leftBottomPoint = new Point(2, 2);
         rectangle = new Rectangle(leftTopPoint, rightTopPoint, rightBottomPoint, leftBottomPoint);
-        specification = new AreaRangeSpecification(BigDecimal.valueOf(4.000), BigDecimal.valueOf(6.000));
+        specification = new AreaRangeSpecification(BigDecimal.valueOf(4), BigDecimal.valueOf(6));
 
     }
 

@@ -27,16 +27,16 @@ public class RectangleServiceImpl implements RectangleService {
 
     @Override
     public BigDecimal findPerimeter(Rectangle rectangle) {
-        BigDecimal height = findHeight(rectangle);
         BigDecimal width = findWidth(rectangle);
-        BigDecimal perimeter = (height.add(width)).multiply(BigDecimal.valueOf(2));
+        BigDecimal length = findLength(rectangle);
+        BigDecimal perimeter = (width.add(length)).multiply(BigDecimal.valueOf(2));
         logger.log(Level.INFO, "Perimeter of rectangle is " + perimeter);
         return perimeter;
     }
 
     @Override
     public BigDecimal findArea(Rectangle rectangle) {
-        BigDecimal area = findHeight(rectangle).multiply(findWidth(rectangle));
+        BigDecimal area = findWidth(rectangle).multiply(findLength(rectangle));
         logger.log(Level.INFO, "Area of rectangle is " + area);
         return area;
     }
@@ -55,7 +55,7 @@ public class RectangleServiceImpl implements RectangleService {
 
     @Override
     public boolean isRhombus(Rectangle rectangle) {
-        if (findHeight(rectangle).equals(findWidth(rectangle))) {
+        if (findWidth(rectangle).equals(findLength(rectangle))) {
             logger.log(Level.INFO, "This shape is rhombus " + rectangle);
             return true;
         } else {
@@ -66,7 +66,7 @@ public class RectangleServiceImpl implements RectangleService {
 
     @Override
     public boolean isSquare(Rectangle rectangle) {
-        if (findHeight(rectangle).equals(findWidth(rectangle)) && areAllRightAngles(rectangle)) {
+        if (findWidth(rectangle).equals(findLength(rectangle)) && areAllRightAngles(rectangle)) {
             logger.log(Level.INFO, "This shape is square " + rectangle);
             return true;
         } else {
@@ -93,21 +93,21 @@ public class RectangleServiceImpl implements RectangleService {
     }
 
     @Override
-    public BigDecimal findHeight(Rectangle rectangle) {
+    public BigDecimal findWidth(Rectangle rectangle) {
         double firstCoordinateVectorHeight = rectangle.getLeftTopPoint().getX() - rectangle.getLeftBottomPoint().getX();
         double secondCoordinateVectorHeight = rectangle.getLeftTopPoint().getY() - rectangle.getLeftBottomPoint().getY();
-        double height = Math.sqrt(Math.pow(firstCoordinateVectorHeight, 2) + Math.pow(secondCoordinateVectorHeight, 2));
-        logger.log(Level.INFO, "Height of rectangle is " + height);
-        return BigDecimal.valueOf(height);
+        double width = Math.sqrt(Math.pow(firstCoordinateVectorHeight, 2) + Math.pow(secondCoordinateVectorHeight, 2));
+        logger.log(Level.INFO, "Height of rectangle is " + width);
+        return BigDecimal.valueOf(width);
     }
 
     @Override
-    public BigDecimal findWidth(Rectangle rectangle) {
+    public BigDecimal findLength(Rectangle rectangle) {
         double firstCoordinateVectorWidth = rectangle.getRightBottomPoint().getX() - rectangle.getLeftBottomPoint().getX();
         double secondCoordinateVectorWidth = rectangle.getRightBottomPoint().getY() - rectangle.getLeftBottomPoint().getY();
-        double width = Math.sqrt(Math.pow(firstCoordinateVectorWidth, 2) + Math.pow(secondCoordinateVectorWidth, 2));
-        logger.log(Level.INFO, "Width of rectangle is " + width);
-        return BigDecimal.valueOf(width);
+        double length = Math.sqrt(Math.pow(firstCoordinateVectorWidth, 2) + Math.pow(secondCoordinateVectorWidth, 2));
+        logger.log(Level.INFO, "Width of rectangle is " + length);
+        return BigDecimal.valueOf(length);
     }
 
     private double findTheFirstCoordinateVector(Point first, Point second) {

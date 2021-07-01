@@ -61,9 +61,8 @@ public class RectangleRepository {
     }
 
     public List<Rectangle> sort(Comparator<Rectangle> comparator) {
-        List<Rectangle> results = new ArrayList<>();
-        Collections.copy(results, rectangles);
-        results.sort(comparator);
-        return results;
+        List<Rectangle> rectanglesCopy = new ArrayList<>(rectangles);
+        rectanglesCopy.sort(comparator);
+        return rectanglesCopy;
     }
 }

@@ -4,6 +4,7 @@ import by.epam.shape.entity.Point;
 import by.epam.shape.entity.Rectangle;
 import by.epam.shape.service.RectangleService;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -20,7 +21,7 @@ public class RectangleServiceImplTest {
     Rectangle quadrangle;
     RectangleService service;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
       square = new Rectangle(new Point(-2, -1), new Point(-1, -1), new Point(-1, -2), new Point(-2, -2));
       rectangle = new Rectangle(new Point(-7,-2), new Point(-3, -2), new Point(-3, -4), new Point(-7, -4));
