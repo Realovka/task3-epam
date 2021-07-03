@@ -49,7 +49,7 @@ public class RectangleRepository {
     }
 
     public boolean removeAll(List<Rectangle> removeRectangles) {
-        return rectangles.addAll(removeRectangles);
+        return rectangles.removeAll(removeRectangles);
     }
 
     public int getSize() {

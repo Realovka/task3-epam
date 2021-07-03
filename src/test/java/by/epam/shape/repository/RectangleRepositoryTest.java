@@ -69,12 +69,12 @@ public class RectangleRepositoryTest {
         repository.addAllRectangles(rectangles);
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
-        actual = null;
+        repository.removeAll(rectangles);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryFirstQuarterSpecification() {
         List<Rectangle> actual = repository.query(firstQuarterSpecification);
         List<Rectangle> expected = List.of(new Rectangle(new Point(2.0, 4.0), new Point(5.0, 4.0), new Point(5.0, 2.0), new Point(2.0, 2.0)));
@@ -87,43 +87,43 @@ public class RectangleRepositoryTest {
         assertEquals(actual.size(), 0);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryPerimeterRangeSpecificationAllRectanglesRight() {
         List<Rectangle> actual = repository.query(perimeterSpecification);
         assertEquals(actual.size(), 3);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryPerimeterRangeSpecificationTwoRectanglesRight() {
         List<Rectangle> actual = repository.query(perimeterSpecification2);
         assertEquals(actual.size(), 2);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryPerimeterRangeSpecificationNoRightRectangle() {
         List<Rectangle> actual = repository.query(perimeterSpecification3);
         assertEquals(actual.size(), 0);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryAreaRangeSpecificationAllRectanglesRight() {
         List<Rectangle> actual = repository.query(areaSpecification);
         assertEquals(actual.size(), 3);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryAreaRangeSpecificationTwoRectanglesRight() {
         List<Rectangle> actual = repository.query(areaSpecification2);
         assertEquals(actual.size(), 2);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testQueryAreaRangeSpecificationNoRightRectangle() {
         List<Rectangle> actual = repository.query(areaSpecification3);
         assertEquals(actual.size(), 0);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testSortLeftTopPointXComparator() {
         List<Rectangle> actual = new ArrayList<>();
         actual = repository.sort(leftTopPointXComparator);
@@ -131,35 +131,26 @@ public class RectangleRepositoryTest {
         expected.add(second);
         expected.add(third);
         expected.add(first);
-        expected.get(0).setRectangleId(1);
-        expected.get(1).setRectangleId(2);
-        expected.get(2).setRectangleId(3);
         assertEquals(actual, expected);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testSortLeftTopPointYComparator() {
         List<Rectangle> actual = repository.sort(leftTopPointYComparator);
         List<Rectangle> expected = new ArrayList<>();
         expected.add(third);
         expected.add(second);
         expected.add(first);
-        expected.get(0).setRectangleId(1);
-        expected.get(1).setRectangleId(2);
-        expected.get(2).setRectangleId(3);
         assertEquals(actual, expected);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testSortLengthComparator() {
         List<Rectangle> actual = repository.sort(lengthComparator);
         List<Rectangle> expected = new ArrayList<>();
         expected.add(third);
-        expected.add(second);
         expected.add(first);
-        expected.get(0).setRectangleId(1);
-        expected.get(1).setRectangleId(2);
-        expected.get(2).setRectangleId(3);
+        expected.add(second);
         assertEquals(actual, expected);
     }
 }
