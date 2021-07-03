@@ -5,13 +5,12 @@ import by.epam.shape.entity.Rectangle;
 import by.epam.shape.exception.RectangleException;
 import by.epam.shape.factory.RectangleFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class RectangleFactoryImplTest {
 

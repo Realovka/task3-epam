@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,5 +63,10 @@ public class RectangleRepository {
         List<Rectangle> rectanglesCopy = new ArrayList<>(rectangles);
         rectanglesCopy.sort(comparator);
         return rectanglesCopy;
+    }
+
+    public RectangleRepository clearArrayList(){
+        instance.rectangles.clear();
+        return instance;
     }
 }

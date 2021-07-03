@@ -1,12 +1,12 @@
 package by.epam.shape.validator;
 
 import by.epam.shape.entity.Point;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class RectangleLineValidatorTest {
 

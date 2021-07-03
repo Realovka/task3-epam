@@ -1,7 +1,6 @@
 package by.epam.shape.validator;
 
 import by.epam.shape.entity.Point;
-import by.epam.shape.entity.Rectangle;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

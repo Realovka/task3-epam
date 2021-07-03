@@ -5,7 +5,8 @@ import by.epam.shape.entity.Rectangle;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class LengthComparatorTest {
 

@@ -1,6 +1,11 @@
 package by.epam.shape.repository;
 
-import by.epam.shape.comparator.*;
+import by.epam.shape.comparator.AreaComparator;
+import by.epam.shape.comparator.WidthComparator;
+import by.epam.shape.comparator.LengthComparator;
+import by.epam.shape.comparator.PerimeterComparator;
+import by.epam.shape.comparator.LeftTopPointYComparator;
+import by.epam.shape.comparator.LeftTopPointXComparator;
 import by.epam.shape.entity.Point;
 import by.epam.shape.entity.Rectangle;
 import by.epam.shape.repository.impl.AreaRangeSpecification;
@@ -8,7 +13,6 @@ import by.epam.shape.repository.impl.FirstQuarterSpecification;
 import by.epam.shape.repository.impl.IdSpecification;
 import by.epam.shape.repository.impl.PerimeterRangeSpecification;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,7 +20,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class RectangleRepositoryTest {
     Rectangle first;

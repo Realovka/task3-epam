@@ -3,15 +3,14 @@ package by.epam.shape.service.impl;
 import by.epam.shape.entity.Point;
 import by.epam.shape.entity.Rectangle;
 import by.epam.shape.service.RectangleService;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.assertFalse;
 
 public class RectangleServiceImplTest {
 
