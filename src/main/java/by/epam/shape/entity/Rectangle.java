@@ -94,8 +94,13 @@ public class Rectangle implements RectangleObservable {
 
     @Override
     public int hashCode() {
-        return (int) rectangleId * leftTopPoint.hashCode()
-                * rightTopPoint.hashCode() * rightBottomPoint.hashCode() * leftBottomPoint.hashCode();
+        int result = 1;
+        result = (int) (rectangleId ^ (rectangleId >>> 32));
+        result *= 31 + (leftTopPoint != null ? leftTopPoint.hashCode() : 0);
+        result *= 31 + (rightTopPoint != null ? rightTopPoint.hashCode() : 0);
+        result *= 31 + (rightBottomPoint != null ? rightBottomPoint.hashCode() : 0);
+        result *= 31 + (leftBottomPoint != null ? leftBottomPoint.hashCode() : 0);
+        return result;
     }
 
     public String toString() {

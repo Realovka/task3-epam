@@ -38,7 +38,10 @@ public class RectangleParameters {
 
     @Override
     public int hashCode() {
-        return perimeter.hashCode() * area.hashCode();
+        int result = 1;
+        result *= 31 + (perimeter != null ? perimeter.hashCode() : 0);
+        result *= 31 + (area != null ? area.hashCode() : 0);
+        return result;
     }
 
     @Override
